@@ -7,10 +7,12 @@ import inspect
 import os.path
 import sys
 
-from result import Err, Ok, Result
+from result import Err
+from result import Ok
+from result import Result
 
-from featlib.constants import PYPROJECT_FILE_NAME
 import featlib.dependencies
+from featlib.constants import PYPROJECT_FILE_NAME
 
 
 def get_project_root_path() -> str:

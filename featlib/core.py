@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import collections
 import collections.abc
-import copy
 import dataclasses
 import functools
 import typing
@@ -10,10 +9,11 @@ import typing
 import packaging
 import packaging.requirements
 
-from .constants import PYPROJECT_FILE_NAME
-from .dependencies import OptionalDependencyTable, is_module_available
 import featlib.register
 
+from .constants import PYPROJECT_FILE_NAME
+from .dependencies import OptionalDependencyTable
+from .dependencies import is_module_available
 
 _P = typing.ParamSpec("_P")
 _R = typing.TypeVar("_R")
@@ -66,11 +66,13 @@ def cache_optional_dependencies() -> None:
 class UnavailableFeature(TypeError):
     @classmethod
     def from_calling_gatekept_function(
-        cls, function_name: str, feature_name: str
+        cls,
+        function_name: str,
+        feature_name: str,
     ) -> typing.Self:
         return cls(
             f"failed to call function {function_name!r}, as it is "
-            f"gatekept behind feature {feature_name!r} which is not detected"
+            f"gatekept behind feature {feature_name!r} which is not detected",
         )
 
 

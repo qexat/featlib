@@ -11,22 +11,24 @@ import packaging.requirements
 import packaging.version
 import toml
 import typing_extensions
-from result import as_result
 from result import Result
+from result import as_result
 
+from featlib._utils import read_file_res
+from featlib._utils import toml_loads_res
 from featlib.constants import PYPROJECT_FILE_NAME
-from featlib._utils import read_file_res, toml_loads_res
-
 
 OptionalDependencyTable: typing_extensions.TypeAlias = dict[
-    str, list[packaging.requirements.Requirement]
+    str,
+    list[packaging.requirements.Requirement],
 ]
 
 
 def get_optional_dependencies_from_pyproject_file(
     path: str,
 ) -> Result[
-    OptionalDependencyTable, OSError | toml.TomlDecodeError | TypeError | ValueError
+    OptionalDependencyTable,
+    OSError | toml.TomlDecodeError | TypeError | ValueError,
 ]:
     return read_file_res(path).and_then(get_optional_dependencies_from_string)
 
