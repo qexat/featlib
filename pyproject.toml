@@ -1,0 +1,29 @@
+[project]
+name = "featlib"
+description = "A library to manage optional features in other projects."
+version = "0.1.0"
+readme = "README.md"
+
+requires-python = ">=3.10"
+dependencies = [
+    "importlib-metadata>=8.0.0,<9.0.0",
+    "packaging>=24.1",
+    "result>=0.17,<0.18",
+    "toml>=0.10,<0.11",
+    "typing_extensions>=4.12,<5.0",
+]
+
+[project.license]
+file = "LICENSE"
+
+[project.optional-dependencies]
+dev = [
+    "isort>=5.13,<6.0",
+    "pre-commit>=3.7,<4.0",
+    "pyright>=1.1,<2.0",
+    "ruff>=0.4,<1.0",
+]
+foo = ["option-python==0.0.1"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
